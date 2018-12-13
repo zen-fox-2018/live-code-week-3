@@ -63,4 +63,27 @@ db.serialize(function() {
     })
 
     //YOUR ALTER TABLE HERE
+    let qAlterTable = 
+        `
+          ALTER TABLE Shows 
+            ADD isAvailable VARCHAR(25)`
+    db.run(qAlterTable, function(err){
+      if(err){
+        console.log(`Error alter table : ${err}`)
+      }
+      else {
+        console.log(`succes altering table`)
+      }
+    })
+
+    //uniq email
+    let qUniqEmail = `CREATE UNIQUE INDEX ux_email ON Audiences(email)`
+    db.run(qUniqEmail, function(err){
+      if(err){
+        console.log(`Error uniq email : ${err}`)
+      }
+      else {
+        console.log(`succes add uniq element`)
+      }
+    })
 })
