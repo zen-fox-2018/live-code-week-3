@@ -1,9 +1,9 @@
 //your code here
-
-const argv = process.argv.slice(2)
-
 const ShowController = require('./controllers/showcontroller')
 const HelpController = require('./controllers/helpcontroller')
+const TransactionController = require('./controllers/transactioncontroller')
+
+const argv = process.argv.slice(2)
 let input = null
 
 switch (argv[0]) {
@@ -26,7 +26,14 @@ switch (argv[0]) {
 
     case 'transaction' :
         if(argv[1] === 'transactions') {
-            
+            TransactionController.transaction()
+        } else if(argv[1] === 'buyTicket') {
+            input = {
+                show_id : argv[2],
+                email_audiences: argv[3],
+                amount_of_ticket : argv[4]
+            }
+            TransactionController.buyTicket(input)
         }
     break;
 

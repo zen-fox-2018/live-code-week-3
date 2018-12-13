@@ -15,7 +15,7 @@ class Controller {
     }
 
     static findBy(input) {
-        Show.findBy({field: `${input.column_name}`, value: input.value}, function(err, dataShow) {
+        Show.findBy(input.column_name, input.value, function(err, dataShow) {
             if(err) {
                 View.displayError('Error: ', err)
             } else {

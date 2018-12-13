@@ -9,6 +9,19 @@ class Show {
         this.isAvalaible = 0
     }
 
+    static findById(input, cb) {
+        let query = `SELECT * FROM Shows WHERE id = ?`
+
+        db.get(query, [input], function(err, row) {
+            if(err) {
+                cb(err)
+            } else {
+                let show = new Show(row.id, row.show, row.schedule, row.price, row.isAvalaible)
+                cb(show)
+            }
+        })
+    }
+
     static findBy(field, value, cb) {
         let query = `SELECT * FROM Shows WHERE ${field} = ?`
 
@@ -18,7 +31,7 @@ class Show {
             } else {
                 let dataShow = []
                 for(let i = 0; i < row.length; i++) {
-                    let show = new Show(row.id, row.show, row.schedule, row.price, row.isAvalaible)
+                    let show = new Show(row[i].id, row[i].show, row[i].schedule, row[i].price, row[i].isAvalaible)
                     dataShow.push(show)
                 }
                 cb(null, dataShow)
