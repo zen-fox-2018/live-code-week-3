@@ -1,6 +1,6 @@
 const db = require('./connection');
 
-db.serialize(function() {
+db.serialize(function () {
   let qTableAudience =
     ` CREATE TABLE IF NOT EXISTS Audiences
       (
@@ -14,17 +14,17 @@ db.serialize(function() {
       )
     `
 
-    db.run(qTableAudience, function(err) {
-      if (!err) {
-        console.log('Table Audiences created');
-      } else {
-        console.log('ERR: ', err);
-      }
-    })
+  db.run(qTableAudience, function (err) {
+    if (!err) {
+      console.log('Table Audiences created');
+    } else {
+      console.log('ERR: ', err);
+    }
+  })
 
 
-    let qTableShows =
-          `
+  let qTableShows =
+    `
             CREATE TABLE IF NOT EXISTS Shows
              (
                id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -34,16 +34,16 @@ db.serialize(function() {
              )
           `
 
-    db.run(qTableShows, function(err) {
-      if (!err) {
-        console.log('Table Shows created');
-      } else {
-        console.log('ERR: ', err);
-      }
-    })
+  db.run(qTableShows, function (err) {
+    if (!err) {
+      console.log('Table Shows created');
+    } else {
+      console.log('ERR: ', err);
+    }
+  })
 
-    let qTableTickets =
-          `
+  let qTableTickets =
+    `
             CREATE TABLE IF NOT EXISTS Tickets
             (
               id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -54,13 +54,40 @@ db.serialize(function() {
               FOREIGN KEY (audienceId) REFERENCES Audiences(id)
             )
           `
-    db.run(qTableTickets, function(err) {
-      if (!err) {
-        console.log('Table Tickets created');
-      } else {
-        console.log('ERR: ', err);
-      }
-    })
+  db.run(qTableTickets, function (err) {
+    if (!err) {
+      console.log('Table Tickets created');
+    } else {
+      console.log('ERR: ', err);
+    }
+  })
 
-    //YOUR ALTER TABLE HERE
+  //YOUR ALTER TABLE HERE
+
+  let qAlt =
+    `
+    ALTER TABLE Shows
+    ADD isAvailable INTEGER;
+    `
+
+  db.run(qAlt, (err) => {
+    if (!err) {
+      console.log('isAvailable Created');
+    } else {
+      console.log('ERR: ', err);
+    }
+  });
+
+  let qUnique =
+    `
+  CREATE UNIQUE INDEX email_index ON Shows (email);
+  `
+
+  db.run(qUnique, (err) => {
+    if (!err) {
+      console.log('unique Created');
+    } else {
+      console.log('ERR: ', err);
+    }
+  })
 })
