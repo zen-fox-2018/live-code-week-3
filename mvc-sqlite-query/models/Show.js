@@ -1,7 +1,7 @@
 const db = require('../db/connection.js')
 
 class Show {
-    constructor(id, show, schedule, price, isAvailable){
+    constructor(id, show, schedule, price, isAvailable) {
         this.id = id
         this.show = show
         this.schedule = schedule
@@ -9,22 +9,77 @@ class Show {
         this.isAvailable = isAvailable
     }
 
-    static readData(cb){
-        let query = `SELECT * FROM Shows`
+    static findAll(lihatKolom,cb){
+        let query = `SELECT ${lihatKolom} FROM Shows`
         db.all(query, function(err,rows){
+            if(err){
+                cb(err,null)
+            }
+            else {
+                cb(null, rows)
+            }
+        })
+    }
+
+    static findByWhere(lihatKolom, jenisKolom, valueJenisKolom, cb) {
+        let query = `SELECT ${lihatKolom} FROM Shows WHERE ${jenisKolom} = ${valueJenisKolom}`
+        db.all(query, function(err, rows){
             if(err){
                 cb(err, null)
             }
             else {
                 let showData = []
-                for(let i = 0; i < rows.length; i++){
+                for (let i = 0; i < rows.length; i++) {
                     showData.push(new Show(rows[i].id, rows[i].show, rows[i].schedule, rows[i].price, rows[i].isAvailable))
                 }
-                cb(null,showData)
+                cb(null, showData)
+            }
+        })
+    }
+
+    static readData(cb) {
+        let query = `SELECT * FROM Shows`
+        db.all(query, function (err, rows) {
+            if (err) {
+                cb(err, null)
+            }
+            else {
+                let showData = []
+                for (let i = 0; i < rows.length; i++) {
+                    showData.push(new Show(rows[i].id, rows[i].show, rows[i].schedule, rows[i].price, rows[i].isAvailable))
+                }
+                cb(null, showData)
 
             }
         })
     }
+
+    static addData(newShow, cb) {
+        let query = `INSERT INTO Shows(show, schedule, price, isAvailable)
+        VALUES (
+            "${newShow.show}",
+            "${newShow.schedule}",
+            ${newShow.price},
+            0
+        )`
+        db.run(query, function (err) {
+            if (err) {
+                cb(err)
+            }
+            else {
+                cb(null)
+            }
+        })
+    }
 }
+
+// Show.readData(function(err,data){
+//     if(err){
+//         console.log(err)
+//     }
+//     else {
+//         console.log(data)
+//     }
+// })
 
 module.exports = Show
