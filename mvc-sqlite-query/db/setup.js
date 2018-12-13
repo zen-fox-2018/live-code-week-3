@@ -88,3 +88,11 @@ db.serialize(function() {
     //CREATE UNIQUE INDEX ux_friend_name ON friend(name);`
 
 })
+
+let query = 
+`DELETE FROM Shows
+WHERE id IS NOT NULL`
+
+db.run(query, function(err){
+  if(err)throw err;
+})

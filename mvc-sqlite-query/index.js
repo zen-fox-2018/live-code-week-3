@@ -1,6 +1,7 @@
 //your code here
 const command = process.argv.slice(2)
 const showsController = require('./contollers/showsController.js')
+const TransactionsController = require('./contollers/audiencesController')
 
 class Index{
     constructor(command){
@@ -12,6 +13,20 @@ class Index{
             switch(this.command[1]){
                 case 'add':
                     showsController.add(this.command[2], this.command[3], this.command[4])
+                break;
+                case 'findBy':
+                    showsController.findBy(this.command[2], this.command[3])
+                break;
+            }
+        }
+
+        if(this.command[0] == 'transaction'){
+            switch(this.command[1]){
+                case 'top3Audience':
+                    TransactionsController.top3Audience()
+                break;
+                case 'buyTicket':
+                    TransactionsController.buyTicket(this.command[2], this.command[3], this.command[4])
                 break;
             }
         }

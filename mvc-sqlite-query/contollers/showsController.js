@@ -12,7 +12,16 @@ class ShowsController {
                 View.display(`successfully added ${show}` )
             }
         })
+    }
 
+    static findBy(column, value){
+        Show.findWhere(column, value, function(err, data){
+            if (err){
+                View.error( 'error')
+            }   else{
+                View.display(data)
+            }
+        })
     }
 }
 
