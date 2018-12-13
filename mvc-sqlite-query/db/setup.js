@@ -79,7 +79,8 @@ db.serialize(function() {
 
     let queryUnique = 
       `
-        CREATE UNIQUE INDEX email ON Audiences(email)
+        ALTER TABLE Audiences
+        ADD UNIQUE (email)
       `
 
     db.run(queryUnique, function(err) {
