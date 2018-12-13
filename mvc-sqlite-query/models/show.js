@@ -60,17 +60,24 @@ class Show {
     let qfindBy =
     `
     SELECT
-     ${field}
+     *
     FROM
      Shows
     WHERE ${field} = ?
     `;
 
-    db.get(qfindBy, value, (err, rows) => {
+    db.all(qfindBy, value, (err, rows) => {
       if(err) {
         callback(err, null);
       } else {
-        callback(null, rows);
+
+        let data = [];
+
+        for (let i = 0; i < rows.length; i++) {
+          data.push(new Show(rows[i].id, rows[i].show, rows[i].schedule, rows[i].price, rows[i].isAvailable));
+        }
+
+        callback(null, data);
       }
     });
   }

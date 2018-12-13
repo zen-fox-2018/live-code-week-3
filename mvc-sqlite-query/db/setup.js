@@ -79,8 +79,8 @@ db.serialize(function () {
   });
 
   let qUnique =
-    `
-  CREATE UNIQUE INDEX email_index ON Shows (email);
+  `
+  CREATE UNIQUE INDEX email_index ON Audiences (email);
   `
 
   db.run(qUnique, (err) => {

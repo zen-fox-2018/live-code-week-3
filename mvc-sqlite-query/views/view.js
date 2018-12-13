@@ -6,7 +6,11 @@ class View {
   }
 
   static showOk(show) {
-    console.log(`'Successfully added a The Book of Mormon'`);
+    console.log(`'Successfully added a ${show}'`);
+  }
+
+  static print(data) {
+    console.log(data);
   }
 }
 
