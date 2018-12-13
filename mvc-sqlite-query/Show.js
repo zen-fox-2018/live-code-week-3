@@ -40,5 +40,21 @@ class Show {
       }
     })
   }
+
+  static findOne(obj , cb) {
+    let query = ` SELECT * FROM Shows WHERE ${obj.where} = ? `
+
+    db.get(query, [obj.value] , (err, row) => {
+      if(err) {
+        cb(err) 
+      } else {
+        if(row) {
+          cb(null, row)
+        } else {
+          cb(null, null)
+        }
+      }
+    })
+  }
 }
 module.exports = Show
