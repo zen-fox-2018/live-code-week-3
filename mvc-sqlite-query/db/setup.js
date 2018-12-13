@@ -8,7 +8,7 @@ db.serialize(function() {
         firstName VARCHAR(50),
         lastName VARCHAR(50),
         age INTEGER,
-        email VARCHAR(100),
+        email VARCHAR(100) UNIQUE,
         type VARCHAR(7),
         balance REAL
       )
