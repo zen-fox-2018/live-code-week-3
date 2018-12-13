@@ -11,6 +11,8 @@ class Index {
     switch (this.command[0]) {
       case 'shows': Controller.shows(this.command.slice(1))
         break;
+      case 'transaction': Controller.transaction(this.command.slice(1))
+        break;
       default: console.log('show menu')
         break;
     }
