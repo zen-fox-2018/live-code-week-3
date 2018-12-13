@@ -63,4 +63,29 @@ db.serialize(function() {
     })
 
     //YOUR ALTER TABLE HERE
+    const qAddColumn = `
+      ALTER TABLE
+        Shows
+      ADD COLUMN
+        isAvailable INTEGER DEFAULT 0
+    `;
+    db.run(qAddColumn, (err) => {
+      if (!err) {
+        console.log(`Column isAvailable added`);
+      } else {
+        console.log('ERR: ', err);
+      }
+    })
+
+    const qUniqueEmail = `
+      CREATE UNIQUE INDEX AEmail ON Audiences(email);
+    `;
+
+    db.run(qUniqueEmail, (err) => {
+      if (!err) {
+        console.log(`Create unique email`);
+      } else {
+        console.log('ERR: ', err);
+      }
+    })
 })
