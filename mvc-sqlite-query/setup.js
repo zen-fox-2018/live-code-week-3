@@ -63,4 +63,27 @@ db.serialize(function() {
     })
 
     //YOUR ALTER TABLE HERE
+
+    let qAlter = `ALTER TABLE Shows
+    ADD COLUMN isAvailable INTEGER DEFAULT 0
+    `
+
+    db.run(qAlter, (err) => {
+      if(err) {
+        console.log(`ERR : `, err)
+      } else {
+        console.log(`Success alter table`)
+      }
+    })
+
+    // UNIQUE EMAIL AUDIENCES
+    let qUnik = `CREATE UNIQUE INDEX IF NOT EXISTS audi_email ON Audiences(email)`
+
+    db.run(qUnik, (err) => {
+      if(err) {
+        console.log(err)
+      }else {
+        console.log(`success create unique`)
+      }
+    })
 })

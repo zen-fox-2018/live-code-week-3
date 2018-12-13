@@ -10,5 +10,6 @@
   "license": "ISC",
   "dependencies": {
     "sqlite3": "^4.0.4"
-  }
+  },
+  "keywords": []
 }
