@@ -1,7 +1,7 @@
 {
   "name": "mvc-sqlite-query",
   "version": "1.0.0",
-  "description": "> ⏰ Time Estimation: ~120 mins",
+  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

@@ -63,4 +63,25 @@ db.serialize(function() {
     })
 
     //YOUR ALTER TABLE HERE
+    let qAddColumnShows = 
+    `ALTER TABLE Shows ADD COLUMN
+    isAvailable BOOLEAN`
+    db.run(qAddColumnShows, function(err) {
+        if(err) {
+            console.log(err)
+        } else {
+            console.log('Success add column isAvailable')
+        }
+    })
+
+    let qAddUnique = 
+    `CREATE UNIQUE INDEX uniqueIndex ON Audiences(email)`
+    db.run(qAddUnique, function(err) {
+      if(err) {
+        console.log(err)
+      } else {
+        console.log('Success add Unique')
+      }
+    })
+
 })
