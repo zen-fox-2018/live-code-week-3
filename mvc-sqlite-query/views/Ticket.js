@@ -1,4 +1,4 @@
-class Show {
+class Ticket {
   static showErr(err) {
     console.log(`ERROR`);
     console.log(err);
@@ -13,4 +13,4 @@ class Show {
   }
 }
 
-module.exports = Show;
+module.exports = Ticket;

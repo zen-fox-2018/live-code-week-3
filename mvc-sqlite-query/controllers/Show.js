@@ -11,6 +11,16 @@ class ShowController {
       }
     })
   }
+  
+  static findBy(data) {
+    Show.findBy(data, (err, movies) => {
+      if (err) {
+        ShowView.showErr(err);
+      } else {
+        ShowView.showData(movies);
+      }
+    })
+  }
 }
 
 module.exports = ShowController;

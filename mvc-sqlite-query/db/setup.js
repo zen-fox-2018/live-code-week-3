@@ -1,6 +1,7 @@
 const db = require('./connection');
 
 db.serialize(function() {
+
   let qTableAudience =
     ` CREATE TABLE IF NOT EXISTS Audiences
       (
