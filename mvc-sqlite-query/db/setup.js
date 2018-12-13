@@ -63,4 +63,36 @@ db.serialize(function() {
     })
 
     //YOUR ALTER TABLE HERE
+    let qAddShows = 
+    `ALTER TABLE Shows
+    ADD COLUMN isAvailable INTEGER DEFAULT 0`
+
+    db.run(qAddShows, function(err) {
+      if (!err) {
+        console.log('isAvailavle column created');
+      } else {
+        console.log('ERR: ', err);
+      }
+    })
+
+    let qUniqueEmail = 
+    `CREATE UNIQUE INDEX ux_email ON Audiences(email)`
+
+    db.run(qUniqueEmail, function(err) {
+      if (!err) {
+        console.log('unique index created');
+      } else {
+        console.log('ERR: ', err);
+      }
+    })
+    //CREATE UNIQUE INDEX ux_friend_name ON friend(name);`
+
+})
+
+let query = 
+`DELETE FROM Shows
+WHERE id IS NOT NULL`
+
+db.run(query, function(err){
+  if(err)throw err;
 })
