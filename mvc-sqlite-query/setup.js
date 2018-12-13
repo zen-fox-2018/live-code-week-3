@@ -63,4 +63,26 @@ db.serialize(function() {
     })
 
     //YOUR ALTER TABLE HERE
+    let addColumn = `
+    ALTER TABLE Shows
+    ADD isAvailable INTEGER DEFAULT 0`
+    db.run(addColumn, function(err) {
+      if (!err) {
+        console.log('Add column');
+      } else {
+        console.log('ERR: ', err);
+      }
+    })
+
+    let unique = `
+    ALTER TABLE Audiences
+    ADD UNIQUE (email)`
+    db.run(unique, function(err) {
+      if (!err) {
+        console.log('unique email');
+      } else {
+        console.log('ERR: ', err);
+      }
+    })
+
 })
