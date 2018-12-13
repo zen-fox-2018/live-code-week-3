@@ -60,40 +60,45 @@ class ElectronicFactory {
 
     static buildRobot(name, buildPrice, components) {
         let result = null;
-        result = new Robot(name, buildPrice)
+        let count = 0;
+        for(let i = 0; i < components.length; i++) {
+            count += components[i].price
+        }
+        let sum = count + buildPrice
+        result = new Robot(name, sum)
 
         return result
     }
 }
 
 class Robot extends ElectronicFactory {
-    constructor(name, type) {
-        super(name, type)
+    constructor(name, price) {
+        super(name, price)
     }
 }
 
-let electro = new Electronics();
+// let electro = new Electronics();
 
-const orderItems = {
-    "Resistor": {
-      quantity: 2, // jumlah barang yang dibeli
-      price: 2000, // harga satuan barang
-      resistance: 1100 // besaran satuan komponen elektronik
-    },
-    "Inductor": {
-      quantity: 3,
-      price: 3000,
-      inductance: 100
-    },
-    "Capacitor": {
-      quantity: 5,
-      price: 2000,
-      capacitance: 200
-    }
-  }
+// const orderItems = {
+//     "Resistor": {
+//       quantity: 2, // jumlah barang yang dibeli
+//       price: 2000, // harga satuan barang
+//       resistance: 1100 // besaran satuan komponen elektronik
+//     },
+//     "Inductor": {
+//       quantity: 3,
+//       price: 3000,
+//       inductance: 100
+//     },
+//     "Capacitor": {
+//       quantity: 5,
+//       price: 2000,
+//       capacitance: 200
+//     }
+//   }
   
-  let components = ElectronicFactory.produceElectronics(orderItems);
-  console.log(components)
+//   let components = ElectronicFactory.produceElectronics(orderItems);
+//   console.log(components)
 
-  let robotTayo = ElectronicFactory.buildRobot("Robot Tayo", 1000, components);
-  console.log(robotTayo)
+//   let robotTayo = ElectronicFactory.buildRobot("Robot Tayo", 1000, components);
+//   console.log(robotTayo)
