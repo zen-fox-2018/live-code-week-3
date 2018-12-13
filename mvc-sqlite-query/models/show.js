@@ -4,7 +4,7 @@ class Show {
     constructor(object) {
         this._id = object.id
         this._show = object.show
-        this._schedule = object.date 
+        this._schedule = object.schedule
         this._price = object.price
         this._isAvailable = object.isAvailable || 0
     }
@@ -53,6 +53,23 @@ class Show {
            }
        })
 
+    }
+
+    static findOne(object, callback) {
+        let query = `SELECT * FROM Shows WHERE ${object.field} = ?`
+        let input = [object.value]
+        db.get(query, input, function(err, row) {
+            if (err) {
+                callback(err)
+            } else {
+                if (row === undefined) {
+                    callback(null, null)
+                } else {
+                    let show = new Show(row)
+                    callback(null, show)
+                }
+            }
+        })
     }
 }
 

@@ -1,4 +1,5 @@
 //your code here
+const ElectronicFactory = require('./ElectronicFactory')
 
 
 
@@ -33,5 +34,8 @@ const orderItems = {
     Capacitor { type: 'capacitor', price: 2000, capacitance: '4 Farrad' },
     Capacitor { type: 'capacitor', price: 2000, capacitance: '4 Farrad' } ]
   */
-  ```
+
+ let robotTayo = ElectronicFactory.buildRobot("Robot Tayo", 1000, components)
+ console.log(robotTayo)
+
   

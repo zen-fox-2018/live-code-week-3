@@ -1,9 +1,9 @@
 const Electronic = require('./Electronic')
 
 class Inductor extends Electronic {
-    constructor(name, price, iduntance) {
-        super(name, price)
-        this._inductance = iduntance
+    constructor(price, inductance) {
+        super("Inductor", price)
+        this._inductance = inductance + " Henry"
     }
 }
 

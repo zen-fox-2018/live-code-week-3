@@ -6,7 +6,7 @@ class ShowController {
     static addShow(input) {
         let data = {
             show: input[0],
-            date: input[1],
+            schedjule: input[1],
             price: input[2]
         }
         let newshow = new Show(data)
@@ -28,7 +28,11 @@ class ShowController {
             if (err) {
                 View.displayErr(err)
             } else {
-                View.displaySuccess(rows)
+                if (rows === null) {
+                    View.displayErr("data not found")
+                } else {
+                    View.displaySuccess(rows)
+                }
             }
         })
     }

@@ -2,9 +2,9 @@ const Electronic = require('./Electronic')
 
 class Capasitor extends Electronic {
 
-    constructor(name, price,capacitance) {
-        super(name, price)
-        this._capacitance = capacitance
+    constructor(price,capacitance) {
+        super("Capasitor", price)
+        this._capacitance = capacitance + " Farrad"
     }
 
 }

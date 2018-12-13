@@ -15,7 +15,12 @@ switch (command) {
             ShowController.findBy(input)
         }
         break;
-    case "transactions":
+    case "transaction":
+        if (todo === "top3Audience") {
+            AudienceController.Showtop3()
+        } else if (todo === "buyTicket") {
+            AudienceController.buyTicket(input)
+        }
         break;
     default:
         break;
