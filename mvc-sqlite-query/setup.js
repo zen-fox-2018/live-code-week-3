@@ -63,4 +63,29 @@ db.serialize(function() {
     })
 
     //YOUR ALTER TABLE HERE
+    let alteringTable = `
+      ALTER TABLE Shows
+      ADD COLUMN "isAvailable" INTEGER`
+    
+      db.run(alteringTable, function(err) {
+        if (err) {
+          console.log('ERR: ', err)
+        } else {
+          console.log('Collumn added')
+        }
+      })
+
+      
+      let changeToUnique = `
+        CREATE UNIQUE INDEX IF NOT EXISTS
+        "UNIQUE"
+        ON Audiences(email)
+        `
+      db.run(changeToUnique, function(err) {
+        if (err) {
+          console.log('ERR: ', err)
+        } else {
+          console.log('Unique added')
+        }
+      }) 
 })
