@@ -14,6 +14,22 @@ class Transaction {
             else cb(null, dataAudience)
         })
     }
+    
+    static findOne(fieldName, value , cb) {
+        db.all(`SELECT * FROM Audiences 
+                WHERE ${fieldName} = ? ;`, value, 
+                (err, dataFind)=> {
+                    if(err) cb(err, null)
+                    else cb(null, dataFind)
+                })
+    }
+
+   static deleteOne(id, cb) {
+       db.run(`DELETE FROM Tickets WHERE id = ?`,id,(err)=> {
+           if(err) cb(err)
+           else cb()
+       })
+   }
 
     static addTransaction(tixFormat, amountofTicket, totalInvoice, audienceId, cb) {
         let statments = [tixFormat, amountofTicket, totalInvoice, audienceId]

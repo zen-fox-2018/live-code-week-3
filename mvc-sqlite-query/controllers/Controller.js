@@ -78,7 +78,34 @@ class Controller {
         })
     }
 
-    
+    static refundTicket(ticketNum, emailAudiences){
+        Transaction.findOne(ticketNumber, ticketNum, (err,dataTicket)=> {
+            if(err) View.showErr(err)
+            else {
+                if(!dataTicket.length){
+                    View.showErr(`Nomor tiket tidak ditemukan`)
+                } else {
+                    Audience.findOne('email', emailAudiences, (err,dataAudience)=> {
+                        if(err) View.showErr(err)
+                        else{
+                            if(!dataAudience.length && dataTicket[0].audienceId != dataAudience[0].id) {
+                                View.showErr(`Email anda tidak sesuai dengan data Nomor Ticket`)
+                            } else {
+                                Transaction.deleteOne(dataTicket[0].id, (err)=> {
+                                    if(err) {
+                                       View.showErr(err) 
+                                    } else {
+                                        Audience.updateOne('balance','id', (dataAudience[0].balance))
+                                    }
+                                })
+                            }
+                        }
+                    })
+                }
+            }
+        })
+    }
+
 }
 
 module.exports = Controller

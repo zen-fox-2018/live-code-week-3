@@ -22,5 +22,5 @@ switch(argv[0], argv[1]) {
         Controller.buyTicket(argv[2], argv[3], argv[4])
         break;
      case "transaction", "refundTicket":
-        // Controller.refundTicket
+        Controller.refundTicket(argv[2], argv[3])
 }
