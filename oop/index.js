@@ -2,7 +2,7 @@
 const Resistor =  require('./Electronic').Resistor
 const Inductor =  require('./Electronic').Inductor
 const Capacitor =  require('./Electronic').Capacitor
-
+const Robot = require('./Robot')
 
 const orderItems = {
     "Resistor": {
@@ -36,9 +36,28 @@ const orderItems = {
         }
         return arrayHasil
       }
+
+      static buildRobot(name, buldPrice, components) {
+        let hargaComponents = 0
+        for(let i = 0 ; i< components.length ;i++) {
+            hargaComponents += components[i].price
+            
+        }
+      
+        
+        let finalHarga = hargaComponents + Number(buldPrice)
+        let robot = new Robot(name, finalHarga)
+     
+        
+        return robot
+      }
   }
 
   let components = ElectronicFactory.produceElectronics(orderItems)
 
   console.log(components);
+
+  let robotTayo = ElectronicFactory.buildRobot("Robot Tayo", 1000, components)
+  console.log(robotTayo)
+
   
