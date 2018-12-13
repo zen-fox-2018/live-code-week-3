@@ -95,7 +95,7 @@ class Controller {
                                     if(err) {
                                        View.showErr(err) 
                                     } else {
-                                        Audience.updateOne('balance','id', (dataAudience[0].balance))
+                                        // Audience.updateOne('balance','id', (dataAudience[0].balance))
                                     }
                                 })
                             }
