@@ -5,13 +5,6 @@ class ElectronicFactory{
         this.type = type
         this.price = price
     }
-
-    // produceElements(type,qty,price,satuan){
-    //     if(type == 'resistor') {
-
-    //     }
-    // }
-
 }
 
 class Resistor extends ElectronicFactory{
@@ -59,56 +52,13 @@ const orderItems = {
     }
   }
   
-//   let components = ElectronicFactory.produceElectronics(orderItems)
+  let components = ElectronicFactory.produceElectronics(orderItems)
 
-//   console.log(orderItems.Resistor)
+//   console.log(orderItems)
 
-  for (const type in orderItems) {
-      if (orderItems.hasOwnProperty('Resistor')) {
-          console.log(orderItems)
-          
-      }
-  }
+//   let a = new Capacitor ()
+
+console.log(components)
 
 
 
-/*
- Resistor
-
-  type: 'resistor',
-  price: <harga barang>
-  resistance: <besaran satuan pada resistor dalam ohm>
-
-  Kapasitor
-
-  type: 'kapasitor',
-  price: <harga barang>
-  capacitance: <besaran satuan pada kapasitor dalam farrad>
-
-  Induktor
-
-  type: 'induktor',
-  price: <harga barang>
-  inductance: <besaran satuan pada induktor dalam henry>
-
-  const orderItems = {
-  "Resistor": {
-    quantity: 2, // jumlah barang yang dibeli
-    price: 2000, // harga satuan barang
-    resistance: 1100 // besaran satuan komponen elektronik
-    resistance: '100 Ohm
-  },
-  "Inductor": {
-    quantity: 3,
-    price: 3000,
-    inductance: 100
-    inductance: '10 Henry
-  },
-  "Capacitor": {
-    quantity: 5,
-    price: 2000,
-    capacitance: 200
-    capacitance: '4 Farrad
-  }
-}
-*/
