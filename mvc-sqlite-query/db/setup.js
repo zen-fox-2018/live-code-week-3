@@ -63,4 +63,18 @@ db.serialize(function() {
     })
 
     //YOUR ALTER TABLE HERE
+    db.run(`ALTER TABLE Shows 
+             ADD isAvailable INTEGER DEFAULT 0` ,
+            err => {
+              if(err) console.log(err);
+              else console.log('success');
+              
+            })
+    db.run(`CREATE UNIQUE INDEX email 
+            ON Audiences(email);`, err =>{
+              if(err) console.log(err);
+              else console.log(('success add unique'));
+              
+            })
+      
 })
