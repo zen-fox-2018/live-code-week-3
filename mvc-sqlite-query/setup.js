@@ -63,4 +63,18 @@ db.serialize(function() {
     })
 
     //YOUR ALTER TABLE HERE
+    let qAlterTable = 
+    `ALTER TABLE Shows
+     ADD COLUMN isAvailable INTEGER`
+     db.run(qAlterTable, function(err) {
+      if (!err) {
+        console.log('Column isAvailable created');
+      } else {
+        console.log('ERR: ', err);
+      }
+    })
+
+    // let qUnique =
+    // `CREATE UNIQUE INDEX email
+    //  ON your_table(column_name);`
 })
