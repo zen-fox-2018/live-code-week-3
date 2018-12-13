@@ -66,7 +66,7 @@ db.serialize(function() {
     let qAlterIsAvailable =
             `
               ALTER TABLE Shows
-              ADD COLUMN isAvailable INTEGER
+              ADD COLUMN isAvailable INTEGER NOT NULL DEFAULT (0)
             `
     db.run(qAlterIsAvailable, function(err) {
       if (!err) {
