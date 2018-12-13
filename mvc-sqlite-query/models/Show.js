@@ -24,19 +24,35 @@ class Show {
         })
     }
 
-    static findWhere(obj) {
+    static findWhere(obj, cb) {
         let field = Object.keys(obj)
         let input = Object.values(obj)
         let query = `
         SELECT *
         FROM Shows
-        WHERE ${field} = ?`
+        WHERE ${field[0]} = ?`
         db.all(query, input, (err, data) => {
             if(err) {
                 cb(err)
             } else {
                 let result = data.map(e => new Show(e))
                 cb(null, result)
+            }
+        })
+    }
+
+    static findOne(obj, cb) {
+        let field = Object.keys(obj)
+        let input = Object.values(obj)
+        let query = `
+        SELECT *
+        FROM Shows
+        WHERE ${field[0]} = ?`
+        db.get(query, input, (err, data) => {
+            if(err) {
+                cb(err)
+            } else {
+                cb(null, data)
             }
         })
     }

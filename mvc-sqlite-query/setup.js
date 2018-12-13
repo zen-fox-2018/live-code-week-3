@@ -74,9 +74,20 @@ db.serialize(function() {
       }
     })
 
+    let drop = `
+    ALTER TABLE Audiences
+    DROP COLUMN email`
+    db.run(drop, function(err) {
+      if (!err) {
+        console.log('DROP email');
+      } else {
+        console.log('ERR: ', err);
+      }
+    })
+
     let unique = `
     ALTER TABLE Audiences
-    ADD UNIQUE (email)`
+    ADD email VARCHAR UNIQUE`
     db.run(unique, function(err) {
       if (!err) {
         console.log('unique email');

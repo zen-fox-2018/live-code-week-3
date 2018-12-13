@@ -4,7 +4,11 @@ class View {
         console.log(`Successfully added a ${name}`);
     }
 
-    static findBy(data) {
+    static buyTicket(ticketNumber, balance) {
+        console.log(`Tiket telah terbeli! Nomor tiket anda adalah ${ticketNumber}. Saldo saat ini ${balance}`);
+    }
+
+    static display(data) {
         console.log(data);
     }
 
