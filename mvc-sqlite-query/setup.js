@@ -62,5 +62,32 @@ db.serialize(function() {
       }
     })
 
-    //YOUR ALTER TABLE HERE
+    let qAlterTable =
+        `
+        ALTER TABLE Shows
+        ADD isAvailable BOOLEAN DEFAULT 0;
+        `
+
+    db.run(qAlterTable, function(err) {
+      if (!err) {
+        console.log('isAvailable Column created on Shows');
+      } else {
+        console.log('ERR: ', err);
+      }
+    })
+
+    let qEmailUnique =
+        `
+        CREATE UNIQUE INDEX audience_email ON Audiences(email);
+        `
+
+    db.run(qEmailUnique, function(err) {
+      if (!err) {
+        console.log('Added unique index on column email');
+      } else {
+        console.log('ERR: ', err);
+      }
+    })
+
+
 })
