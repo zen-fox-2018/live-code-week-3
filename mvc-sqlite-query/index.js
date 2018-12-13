@@ -2,6 +2,7 @@
  const command = process.argv.slice(2);
  const Audience = require('./Controllers/AudienceController');
  const Shows = require('./Controllers/ShowController');
+ const Tickets = require('./Controllers/TicketController')
  class Commandcenter {
      constructor(command) {
          this.command = command
@@ -19,7 +20,7 @@
                 if (command[1] === "top3Audience") {
                     Audience.findTop3()
                 } else if (command[1] === "buyTicket") {
-                    
+                    Tickets.buyTickets(command.slice(2))
                 }
             break;
 
