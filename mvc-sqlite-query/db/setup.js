@@ -62,5 +62,23 @@ db.serialize(function() {
       }
     })
 
+    const alterTable = `ALTER TABLE Shows ADD COLUMN isAvailable BOOLEAN`
+    db.run(alterTable, function (err) {
+      if (err) {
+        console.log("error di alter", err)
+      } else {
+        console.log("berhasil tambah column di shows")
+      }
+    })
+
+    const unique = `CREATE UNIQUE INDEX email ON Audiences(email)`
+    db.run(unique, function(err) {
+      if (err) {
+        console.log(err)
+      } else {
+        console.log("berhasil")
+      }
+    })
+
     //YOUR ALTER TABLE HERE
 })
