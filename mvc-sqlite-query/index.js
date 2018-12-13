@@ -22,6 +22,9 @@ switch (command) {
     else if (command2 === "buyTicket") {
       Controller.buyTicket(options)
     }
+    else if (command2 === "refundTicket") {
+      Controller.refundTicket(options)
+    }
     break;
   default:
 
