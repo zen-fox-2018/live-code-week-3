@@ -1,4 +1,4 @@
-const db = require('./connection');
+const db = require('./dbConnection');
 
 db.serialize(function() {
   let query =
