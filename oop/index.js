@@ -36,14 +36,10 @@ class ElectronicFactory {
 
   static produceElectronics(orderItems) {
     console.log(orderItems);
-    let arr = [];
   }
 
 
 }
-
-
-
 
 
 
