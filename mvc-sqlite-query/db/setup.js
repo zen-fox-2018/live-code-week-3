@@ -1,4 +1,4 @@
-const db = require('./connection');
+const db = require('./dbConnection.js');
 
 db.serialize(function() {
   let qTableAudience =
@@ -63,4 +63,31 @@ db.serialize(function() {
     })
 
     //YOUR ALTER TABLE HERE
+      let queryAvailable =
+          `
+            ALTER TABLE SHOWS
+            ADD isAvalaible INTEGER
+          `
+
+    db.run(queryAvailable, function(err) {
+      if (!err) {
+        console.log('Column isAvailable created');
+      } else {
+        console.log('ERR: ', err);
+      }
+    })
+
+    let queryUnique = 
+      `
+        ALTER TABLE Audiences
+        ADD UNIQUE (email)
+      `
+
+    db.run(queryUnique, function(err) {
+      if (!err) {
+        console.log('Column email unique created');
+      } else {
+        console.log('ERR: ', err);
+      }
+    })
 })
